@@ -5,9 +5,18 @@ The project is rewrite on [__Makerlog__](https://makerlog.org/posts/gatekeeper-f
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3
  and [gatekeeper](https://github.com/prose/gatekeeper).
 
-## Setup angular-cli
+## Install npm packages to run angular-cli
 
-Follow the installation instructions on [angular-cli](https://github.com/angular/angular-cli). After the installation run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+1. Install 
+```
+npm install
+```
+2. Run the application
+```
+ng serve
+```
+
+Navigate to `http://localhost:4200/`.
 The app will automatically reload if you change any of the source files.
 
 ## Setup your GitHub Application
@@ -18,7 +27,7 @@ The app will automatically reload if you change any of the source files.
 
 ## Setup Gatekeeper
 
-1. Clone the repository into the __shared__ directory
+1. Clone the repository into __src/app/shared__ directory
 ```
 git clone git@github.com:prose/gatekeeper.git
 ```
@@ -27,7 +36,7 @@ git clone git@github.com:prose/gatekeeper.git
 cd src/app/shared && npm install
 ```
 
-3. Adjust `gatekeeper.config.ts`
+3. Adjust `config.json` (src/app/shared/gatekeeper/config.json)
 ```
 {
  "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
@@ -40,9 +49,21 @@ cd src/app/shared && npm install
 }
 ```
 
-4. Add Gatekeeper to `.gitignore`
-
-5. __Serve__
+4. Adjust `gatekeeper.config.ts` (src/app/gatekeeper.config.ts)
 ```
-$ node server.js
+export const gatekeeperConfig = {
+  development: {
+    client_id: 'GITHUB_APPLICATION_CLIENT_ID',
+    redirect_uri: 'http://localhost:4200/auth',
+    gatekeeper: 'http://localhost:9999'
+  },
+  production: {}
+};
+```
+
+5. Add Gatekeeper to `.gitignore`
+
+6. __Serve__ 
+```
+$ cd src/app/shared/gatekeeper && node server.js
 ```
