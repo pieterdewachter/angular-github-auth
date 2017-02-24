@@ -1,0 +1,21 @@
+.login {
+  &__container {
+    box-sizing: content-box;
+  }
+
+  &__logo {
+    margin: 0 auto;
+  }
+
+  &__btn--full {
+    margin: 20px auto;
+    width: 100%;
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  md-card-header {
+    height: 150px;
+  }
+}

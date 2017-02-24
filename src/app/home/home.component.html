@@ -1,0 +1,13 @@
+<div [hidden]="!authService.userLoggedIn">
+  <span class="success">login success</span>
+  <a href="" (click)="logout()">
+    logout
+  </a>
+</div>
+<br>
+<div>
+  <a class="header__avatar" *ngIf="authService.userLoggedIn && authService.loggedInUser?.name">
+    <img class="header__avatar__image" src="{{authService.loggedInUser?.avatar_url }}" alt="">
+    <p class="header__avatar__name">{{ authService.loggedInUser?.name }}</p>
+  </a>
+</div>

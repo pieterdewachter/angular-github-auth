@@ -1,0 +1,18 @@
+.success {
+  color: green;
+}
+
+.header__avatar {
+  &__image {
+    height: 30px;
+    width: 30px;
+    border-radius: 50px;
+    margin: auto 10px;
+  }
+  &__name {
+    display: inline-block;
+    margin: 8px;
+    position: relative;
+    top: -10px;
+  }
+}

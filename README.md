@@ -1,31 +1,48 @@
-# AngularGithubAuth
+# Angular GitHub Auth
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3.
+The project is rewrite on [__Makerlog__](https://makerlog.org/posts/gatekeeper-for-authenticating-with-github)'s approach for using gatekeeper GitHub-authentication. Instead of plain __Javascript__ we use __Angular__.
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.28.3
+ and [gatekeeper](https://github.com/prose/gatekeeper).
 
-## Code scaffolding
+## Setup angular-cli
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
+Follow the installation instructions on [angular-cli](https://github.com/angular/angular-cli). After the installation run `ng serve` for a dev server. Navigate to `http://localhost:4200/`.
+The app will automatically reload if you change any of the source files.
 
-## Build
+## Setup your GitHub Application
+1. Sign in into __GitHub__
+2. Go to __settings__/__OAuth applications__ and __Register a new application__
+3. Give your application a __name__ and fill in the __Homepage URL__ and __Authorization callback URL__ : ```http://localhost:4200/``` 
+4. __Save__ (afterwards we will need the __Client ID__ and __Client Secret__ for our __gatekeeper__ setup)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+## Setup Gatekeeper
 
-## Running unit tests
+1. Clone the repository into the __shared__ directory
+```
+git clone git@github.com:prose/gatekeeper.git
+```
+2. Install Dependencies
+```
+cd src/app/shared && npm install
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+3. Adjust `gatekeeper.config.ts`
+```
+{
+ "oauth_client_id": "GITHUB_APPLICATION_CLIENT_ID",
+ "oauth_client_secret": "GITHUB_APPLICATION_CLIENT_SECRET",
+ "oauth_host": "github.com",
+ "oauth_port": 443,
+ "oauth_path": "/login/oauth/access_token",
+ "oauth_method": "POST",
+ "port": 9999
+}
+```
 
-## Running end-to-end tests
+4. Add Gatekeeper to `.gitignore`
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Deploying to GitHub Pages
-
-Run `ng github-pages:deploy` to deploy to GitHub Pages.
-
-## Further help
-
-To get more help on the `angular-cli` use `ng help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+5. __Serve__
+```
+$ node server.js
+```
