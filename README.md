@@ -74,5 +74,5 @@ The app will automatically reload if you change any of the source files.
 6. __Serve__ 
   
   ```
-  $ cd src/app/shared/gatekeeper && node server.js
+  $ cd src/app/shared/gatekeeper && node index.js
   ```
